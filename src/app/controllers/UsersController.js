@@ -3,12 +3,11 @@ import Users from '../models/Users';
 class UsersController {
   async store(req, res) {
     try {
-      const { name, email, password_hash } = await Users.create(req.body);
+      const { name, email } = await Users.create(req.body);
 
       res.status(200).json({
-        name,
-        email,
-        password_hash,
+        message: 'user created',
+        Data: { name, email },
       });
     } catch (err) {
       res.status(500).json({ error: err });
